@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Task 1: Pure logic tests
- *
+ * <p>
  * Practice:
  * - Arrange-Act-Assert pattern
  * - Good test naming
  * - assertEquals for return values
  * - assertThrows for invalid input
- *
+ * <p>
  * Instructions:
  * Write tests for AgeCalculator. Each TODO describes one test to write.
  * Remove the TODO comments as you implement each test.
@@ -36,13 +36,17 @@ class AgeCalculatorTest {
     @Test
     @DisplayName("toMonths: 0 years returns 0 months")
     void shouldReturnZeroMonthsForZeroYears() {
-        assertEquals(0, calculator.toMonths(0));
+        int months = calculator.toMonths(0);
+
+        assertEquals(0, months);
     }
 
     @Test
     @DisplayName("toMonths: positive years returns correct months")
     void shouldConvertPositiveYearsToMonths() {
-        assertEquals(36, calculator.toMonths(3));
+        int months = calculator.toMonths(3);
+
+        assertEquals(36, months);
     }
 
     @Test
@@ -51,30 +55,36 @@ class AgeCalculatorTest {
         assertThrows(IllegalArgumentException.class, () -> calculator.toMonths(-1));
     }
 
-    // --- dogToHumanYears() ---
-
     @Test
     @DisplayName("dogToHumanYears: age 0 returns 0")
     void shouldReturnZeroHumanYearsForPuppy() {
-        assertEquals(0, calculator.dogToHumanYears(0));
+        int humanYears = calculator.dogToHumanYears(0);
+
+        assertEquals(0, humanYears);
     }
 
     @Test
     @DisplayName("dogToHumanYears: age 1 returns 15")
     void shouldReturnFifteenForOneYearOldDog() {
-        assertEquals(15, calculator.dogToHumanYears(1));
+        int humanYears = calculator.dogToHumanYears(1);
+
+        assertEquals(15, humanYears);
     }
 
     @Test
     @DisplayName("dogToHumanYears: age 2 returns 24")
     void shouldReturnTwentyFourForTwoYearOldDog() {
-        assertEquals(24, calculator.dogToHumanYears(2));
+        int humanYears = calculator.dogToHumanYears(2);
+
+        assertEquals(24, humanYears);
     }
 
     @Test
     @DisplayName("dogToHumanYears: age 5 returns 39")
     void shouldCalculateCorrectlyForOlderDog() {
-        assertEquals(39, calculator.dogToHumanYears(5));
+        int humanYears = calculator.dogToHumanYears(5);
+
+        assertEquals(39, humanYears);
     }
 
     @Test
@@ -83,17 +93,29 @@ class AgeCalculatorTest {
         assertThrows(IllegalArgumentException.class, () -> calculator.dogToHumanYears(-1));
     }
 
-    // --- isBaby() ---
-
     @Test
     @DisplayName("isBaby: age 0 returns true")
-    void shouldReturnTrueForAgZero() {
-        assertTrue(calculator.isBaby(0));
+    void shouldReturnTrueForAgeZero() {
+        boolean baby = calculator.isBaby(0);
+
+        assertTrue(baby);
     }
 
     @Test
     @DisplayName("isBaby: age 1 returns false")
     void shouldReturnFalseForAgeOne() {
-        assertFalse(calculator.isBaby(1));
+        boolean baby = calculator.isBaby(1);
+
+        assertFalse(baby);
     }
+    @Test
+    @DisplayName("toMonths: largest safe value converts without overflow")
+    void shouldConvertLargestSafeIntToMonths() {
+        int maxSafeYears = Integer.MAX_VALUE / 12;
+        int months = calculator.toMonths(maxSafeYears);
+
+        assertEquals(maxSafeYears * 12, months);
+    }
+
+
 }
