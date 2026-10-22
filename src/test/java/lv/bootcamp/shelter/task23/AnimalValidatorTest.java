@@ -65,6 +65,7 @@ class AnimalValidatorTest {
             String longName = "a".repeat(101);
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validateName(longName));
             assertThrows(IllegalArgumentException.class, () -> validator.validateName(longName));
+
             assertTrue(exception.getMessage().contains("100 characters"));
         }
     }
@@ -95,6 +96,7 @@ class AnimalValidatorTest {
         @DisplayName("rejects invalid ages with correct message")
         void shouldRejectInvalidAges(int age, String expectedMessagePart) {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validateAge(age));
+
             assertTrue(exception.getMessage().contains(expectedMessagePart));
         }
     }
@@ -109,6 +111,7 @@ class AnimalValidatorTest {
         @DisplayName("throws NullPointerException for null animal")
         void shouldThrowForNullAnimal() {
             NullPointerException exception = assertThrows(NullPointerException.class, () -> validator.validate(null));
+
             assertTrue(exception.getMessage().contains("must not be null"));
         }
 
